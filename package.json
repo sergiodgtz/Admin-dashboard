@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@jamescoyle/svg-icon": "^0.1.1",
+    "@jamescoyle/vue-icon": "^0.1.2",
+    "@mdi/js": "^7.4.47"
+  }
+}
