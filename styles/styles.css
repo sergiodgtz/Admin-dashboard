@@ -4,12 +4,24 @@
 :root{
 
     --blue-background: rgb(42, 130, 230);
+    --grey-background: rgb(219, 219, 219);
+    --blue-background-hover: rgb(30, 100, 180);
     --main-content-margin: 15px;
     --header-margin:40px;
+
     --profile-name-size: 1.1rem;
     --nav-text-name-size: 1.4rem;
     --sidebar-text-size: 1.3rem;
+    --card-title-text-size:1.15rem;
+
+    --sidebar-element-icon-size:25px;
     --sidebar-icon-size: 60px;
+    --sidebar-margin:10px;
+    --header-box-shadow:  -1px 20px 8px -6px rgba(0,0,0,0.80);
+    --main-content-cards-box-shadow: 0px 5px 10px 2px rgba(163,163,163,1);
+
+    --card-content-text-color: rgb(105, 105, 105);
+    
 }
 
 body{
@@ -23,8 +35,7 @@ body{
 .content{
     width: 100%;
     display: grid;
-    height: 800px;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: minmax(200px,300px) 3fr;
     grid-template-rows:1fr 1fr 2fr 2fr;
 }
 
@@ -38,10 +49,11 @@ body{
     grid-template-rows: clamp(70px, 50%, 100px) clamp(70px, 70%, 100px);
     grid-template-columns: 2fr 1fr;
     column-gap: var(--main-content-margin);
-    -webkit-box-shadow: 0px 13px 2px 0px rgba(0,0,0,0.42);
-    -moz-box-shadow: 0px 13px 2px 0px rgba(0,0,0,0.42);
-    box-shadow: 0px 13px 2px 0px rgba(0,0,0,0.42);
+    -webkit-box-shadow: var(--header-box-shadow);
+    -moz-box-shadow: var(--header-box-shadow);
+    box-shadow: var(--header-box-shadow);
     margin-bottom: 10px;
+    z-index: 1;
     
 }
 
@@ -175,8 +187,17 @@ input:focus{
     color:white;
     display:flex;
     align-items: center;
+    margin-left: var(--sidebar-margin);
 }
 
+.sidebar-general{
+    margin-left: var(--sidebar-margin);
+    margin-bottom: 25%;
+}
+
+.sidebar-settings{
+    margin-left: var(--sidebar-margin);
+}
 
 #sidebar-icon{
     display: block;
@@ -190,40 +211,199 @@ input:focus{
 .sidebar-element{
     display:flex;
     align-items: center;
+    justify-content: flex-start;
     color:white;
     font-weight: bold;
-    font-size:var(--sidebar-text-size) ;
+    font-size:var(--sidebar-text-size);
+    max-height: 50px;
+    margin:0;
+    padding:0;
+    list-style: none;
 }
+
+
+.sidebar-element-icon{
+    padding: 0px 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: block;
+    width:var(--sidebar-element-icon-size);
+    height:var(--sidebar-element-icon-size);
+    background-size: contain;
+    padding:5px;
+    
+}
+
+/*Main content styling */
 
 .main-content{
     grid-column: 2/3;
     grid-row:2/5;
-    background-color: rgb(207, 207, 207);
+    background-color: var(--grey-background);
     display:grid;
     grid-template-columns: 2fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 40px 1fr 40px  1fr;
     gap:5px;
+    z-index: 0;
+}
+
+.project-section-title{
+    font-size: var(--nav-text-name-size);
+    font-weight: bold;
+    margin-left: var(--main-content-margin);
 }
 
 .projects-container{
-    background-color: darkcyan;
+    background-color: var(--grey-background);
     margin: var(--main-content-margin);
     grid-column: 1/2;
-    grid-row:1/3;
+    grid-row:2/5;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(auto-fit, clamp(150px, 30%, 50%));
+    gap:25px;
 }
+
+.card{
+    background-color: white;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items:flex-start;
+    padding: 30px;
+    border-radius: 10px;
+    position: relative;
+    -webkit-box-shadow: var(--main-content-cards-box-shadow);
+    -moz-box-shadow: var(--main-content-cards-box-shadow);
+    box-shadow: var(--main-content-cards-box-shadow);
+    border-left: 12px solid rgb(230, 195, 0);
+    
+}
+
+.card > span {
+    margin: 0;
+    padding: 0;
+    font-size: var(--card-title-text-size);
+    font-weight: bold;
+}
+
+.card > p {
+    margin: 0;
+    padding: 0;
+    color: var(--card-content-text-color)
+}
+
+.card-icons-group{
+    display:flex;
+    align-self:flex-end;
+    justify-content: center;
+    position: absolute;
+    padding-bottom: 10px;
+    bottom: 0;
+}
+
+.card-icon{
+    padding: 0px 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: block;
+    width:var(--sidebar-element-icon-size);
+    height:var(--sidebar-element-icon-size);
+    background-size: contain;
+    padding:5px;
+    
+}
+
+/*Announcements style */
 
 .announcements{
-    background-color:brown;
-    margin: var(--main-content-margin);
-    grid-column: 2/3;
-    grid-row:1/2;
-}
-
-.trending{
-    background-color: var(--blue-background);
+    background-color:rgb(255, 255, 255);
     margin: var(--main-content-margin);
     grid-column: 2/3;
     grid-row:2/3;
+    border-radius: 10px;
+    box-shadow: var(--main-content-cards-box-shadow);
+    padding: 15px;
+}
+
+.announcements div:nth-child(2){
+    border-top: 1px solid rgba(163,163,163,1);
+    border-bottom: 1px solid rgba(163,163,163,1);
+}
+
+.announcement-content > span{
+    margin: 0;
+    padding: 10px;
+    font-size: var(--card-title-text-size);
+    font-weight: bold;
+}
+
+.announcement-content > p{
+    margin: 0;
+    padding: 10px;
+    color: var(--card-content-text-color);
+}
+
+.announcement-content{
+    padding: 10px 0px;
+}
+
+
+/*trending style */
+
+.trending{
+    background-color: white;
+    margin: var(--main-content-margin);
+    grid-column: 2/3;
+    grid-row:4/5;
+    border-radius: 10px;
+    box-shadow: var(--main-content-cards-box-shadow);
+    padding: 15px;
+    margin-bottom: 50px;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    padding: 35px;
+}
+
+.trending-section-title{
+    font-size: var(--nav-text-name-size);
+    font-weight: bold;
+    margin-left: var(--main-content-margin);
+    grid-column: 2/3;
+    grid-row:3/4;
+}
+
+.profile-icon{
+    border-radius: 30px;
+    display:block;
+    background-size: contain;
+    width:60px;
+    height: 60px;
+}
+
+.trending-item{
+    display:flex;
+    justify-content: flex-start;
+    max-width: fit-content;
+    align-items: center;
+}
+
+.trending-item > div{
+    margin-left: 15px;
+    
+}
+
+.trending-item > div > span {
+    margin: 0;
+    padding: 0;
+    font-size: var(--profile-name-size);
+    font-weight: bolder;
+}
+
+.trending-item > div > p {
+    margin: 0;
+    padding: 0;
+    font-size: var(--card-content-text-color);
 }
 
 ul{
@@ -251,6 +431,9 @@ button{
     height:40px;
     border: none;
     box-shadow: none;
+}
 
+button:hover{
+    background-color: var(--blue-background-hover);
 }
 
